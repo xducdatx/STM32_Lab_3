@@ -29,7 +29,7 @@ static uint16_t counterForButtonPress1s[N0_OF_BUTTONS];
 void button_reading(void){
 	for(char i = 0; i < N0_OF_BUTTONS; i ++){
 		debounceButtonBuffer2[i] = debounceButtonBuffer1[i];
-		debounceButtonBuffer1[i] = HAL_GPIO_ReadPin(BUTTON_1_GPIO_Port, BUTTON_1_Pin);
+		debounceButtonBuffer1[i] = HAL_GPIO_ReadPin(BT1_GPIO_Port, BT1_Pin);
 		if(debounceButtonBuffer1[i] == debounceButtonBuffer2[i])
 			buttonBuffer[i] = debounceButtonBuffer1[i];
 			if(buttonBuffer[i] == BUTTON_IS_PRESSED){
