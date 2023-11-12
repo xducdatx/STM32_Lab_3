@@ -22,8 +22,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "button.h"
+#include "Button.h"
 #include "software_timer.h"
+#include "led_display.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -95,11 +96,23 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(100);
+  initialButton();
+  setTimer1(1);
+//  setTimer2(100);
   while (1)
   {
     /* USER CODE END WHILE */
-
+	  if (timer1_flag == 1)
+	  {
+		  getKeyInput();
+		  setTimer1(1);
+	  }
+	  display7SEG(5);
+	  if (isButton1Pressed() == 1)
+	  {
+		  display7SEG(2);
+		  HAL_Delay(2000);
+	  }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -203,8 +216,8 @@ static void MX_GPIO_Init(void)
                           |Amber2_Pin|Red2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, SEG_A_Pin|SEG_B_Pin|SEG_C_Pin|SEG7_4_Pin
-                          |SEG_D_Pin|SEG_E_Pin|SEG_F_Pin|SEG_G_Pin
+  HAL_GPIO_WritePin(GPIOB, SEG7_a_Pin|SEG7_b_Pin|SEG7_c_Pin|SEG7_4_Pin
+                          |SEG7_d_Pin|SEG7_e_Pin|SEG7_f_Pin|SEG7_g_Pin
                           |SEG7_1_Pin|SEG7_2_Pin|SEG7_3_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : BT1_Pin BT2_Pin BT3_Pin */
@@ -222,11 +235,11 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : SEG_A_Pin SEG_B_Pin SEG_C_Pin SEG7_4_Pin
-                           SEG_D_Pin SEG_E_Pin SEG_F_Pin SEG_G_Pin
+  /*Configure GPIO pins : SEG7_a_Pin SEG7_b_Pin SEG7_c_Pin SEG7_4_Pin
+                           SEG7_d_Pin SEG7_e_Pin SEG7_f_Pin SEG7_g_Pin
                            SEG7_1_Pin SEG7_2_Pin SEG7_3_Pin */
-  GPIO_InitStruct.Pin = SEG_A_Pin|SEG_B_Pin|SEG_C_Pin|SEG7_4_Pin
-                          |SEG_D_Pin|SEG_E_Pin|SEG_F_Pin|SEG_G_Pin
+  GPIO_InitStruct.Pin = SEG7_a_Pin|SEG7_b_Pin|SEG7_c_Pin|SEG7_4_Pin
+                          |SEG7_d_Pin|SEG7_e_Pin|SEG7_f_Pin|SEG7_g_Pin
                           |SEG7_1_Pin|SEG7_2_Pin|SEG7_3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
@@ -239,6 +252,7 @@ static void MX_GPIO_Init(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	timer1Run();
+//	timer2Run();
 }
 /* USER CODE END 4 */
 

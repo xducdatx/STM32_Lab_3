@@ -14,10 +14,7 @@
 #define PRESSED_STATE GPIO_PIN_RESET
 #define NUM_OF_BUTTON 3
 
-extern int BT1_flag;
-extern int BT2_flag;
-extern int BT3_flag;
-
+void initialButton();
 int isButton1Pressed();
 int isButton2Pressed();
 int isButton3Pressed();

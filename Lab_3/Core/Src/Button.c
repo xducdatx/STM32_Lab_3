@@ -10,7 +10,9 @@ int KeyReg0[NUM_OF_BUTTON];
 int KeyReg1[NUM_OF_BUTTON];
 int KeyReg2[NUM_OF_BUTTON];
 int KeyReg3[NUM_OF_BUTTON];
-
+int BT1_flag;
+int BT2_flag;
+int BT3_flag;
 int TimerForKeyPress = 200;
 
 
@@ -55,18 +57,18 @@ int isButton3Pressed()
 	}
 	return 0;
 }
-void subKeyProcessBT1()
-{
-	BT1_flag = 1;
-}
-void subKeyProcessBT2()
-{
-	BT2_flag = 1;
-}
-void subKeyProcessBT3()
-{
-	BT3_flag = 1;
-}
+//void subKeyProcessBT1()
+//{
+//	BT1_flag = 1;
+//}
+//void subKeyProcessBT2()
+//{
+//	BT2_flag = 1;
+//}
+//void subKeyProcessBT3()
+//{
+//	BT3_flag = 1;
+//}
 
 void getKeyInput()
 {
@@ -84,9 +86,9 @@ void getKeyInput()
 				KeyReg3[i] = KeyReg2[i];
 				if (KeyReg2[i] == PRESSED_STATE)
 				{
-					if (i == 0) subKeyProcessBT1();
-					else if (i == 1) subKeyProcessBT2();
-					else if (i == 2) subKeyProcessBT3();
+					if (i == 0) BT1_flag = 1;
+					else if (i == 1) BT2_flag = 1;
+					else if (i == 2) BT3_flag = 1;
 					TimerForKeyPress = 200;
 				}
 			}

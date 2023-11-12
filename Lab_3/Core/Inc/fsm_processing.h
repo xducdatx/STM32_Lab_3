@@ -9,6 +9,8 @@
 #define INC_FSM_PROCESSING_H_
 #include "main.h"
 #include "Button.h"
+#include "led_display.h"
+#include "software_timer.h"
 void fsm_processing();
 
 #endif /* INC_FSM_PROCESSING_H_ */
