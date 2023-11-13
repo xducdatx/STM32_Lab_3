@@ -25,6 +25,7 @@
 #include "Button.h"
 #include "software_timer.h"
 #include "led_display.h"
+#include "fsm_processing.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -97,22 +98,37 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   initialButton();
-  setTimer1(1);
-//  setTimer2(100);
+  setTimer1(25);
+//  int index = 0;
+  setTimer2(100);
+  setTimer3(1);
   while (1)
   {
     /* USER CODE END WHILE */
-	  if (timer1_flag == 1)
-	  {
-		  getKeyInput();
-		  setTimer1(1);
-	  }
-	  display7SEG(5);
-	  if (isButton1Pressed() == 1)
-	  {
-		  display7SEG(2);
-		  HAL_Delay(2000);
-	  }
+//	  if (timer1_flag == 1)
+//	  {
+//		  getKeyInput();
+//		  setTimer1(1);
+//	  }
+//	  display7SEG(5);
+//	  if (isButton1Pressed() == 1)
+//	  {
+//		  display7SEG(2);
+//		  HAL_Delay(2000);
+//	  }
+	  fsm_processing();
+//	  if (timer1_flag == 1)
+//	  		{
+//	  			if (isButton1Pressed() == 1)
+//	  					{
+//	  						led_off(Red1);
+//	  						led_off(Green1);
+//	  					}
+//
+//	  			if (index > 3) index = 0;
+//	  			update7SEG(index++);
+//	  			setTimer1(25);
+//	  		}
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -252,7 +268,8 @@ static void MX_GPIO_Init(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	timer1Run();
-//	timer2Run();
+	timer2Run();
+	timer3Run();
 }
 /* USER CODE END 4 */
 

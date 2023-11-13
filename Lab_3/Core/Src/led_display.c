@@ -6,6 +6,7 @@
  */
 #include "led_display.h"
 
+
 void display7SEG(int num)
 {
    	if (num == 0)
@@ -109,6 +110,7 @@ void display7SEG(int num)
    		HAL_GPIO_WritePin(SEG7_g_GPIO_Port, SEG7_g_Pin, 0);
    	}
 }
+int led_buffer[4] = {8, 8, 8, 8};
 void unEnableAll()
 {
 	HAL_GPIO_WritePin(SEG7_1_GPIO_Port, SEG7_1_Pin, 1);
@@ -123,25 +125,50 @@ void update7SEG(int index)
 		case 0:
 			unEnableAll();
 			HAL_GPIO_WritePin(SEG7_1_GPIO_Port, SEG7_1_Pin, 0);
-			display7SEG(numLed1);
+			display7SEG(led_buffer[0]);
 			break;
 		case 1:
 			unEnableAll();
 			HAL_GPIO_WritePin(SEG7_2_GPIO_Port, SEG7_2_Pin, 0);
-			display7SEG(numLed2);
+			display7SEG(led_buffer[1]);
 			break;
 		case 2:
 			unEnableAll();
 			HAL_GPIO_WritePin(SEG7_3_GPIO_Port, SEG7_3_Pin, 0);
-			display7SEG(numLed3);
+			display7SEG(led_buffer[2]);
 			break;
 		case 3:
 			unEnableAll();
 			HAL_GPIO_WritePin(SEG7_4_GPIO_Port, SEG7_4_Pin, 0);
-			display7SEG(numLed4);
+			display7SEG(led_buffer[3]);
 			break;
 		default:
 			break;
+	}
+}
+int valueSEG12;
+int valueSEG34;
+void updateClockBuffer()
+{
+	if (valueSEG12 <= 9)
+	{
+		led_buffer[0] = 0;
+		led_buffer[1] = valueSEG12;
+	}
+	else
+	{
+		led_buffer[0] = valueSEG12 / 10;
+		led_buffer[1] = valueSEG12 % 10;
+	}
+	if (valueSEG34 <= 9)
+	{
+		led_buffer[2] = 0;
+		led_buffer[3] = valueSEG34;
+	}
+	else
+	{
+		led_buffer[2] = valueSEG34 / 10;
+		led_buffer[3] = valueSEG34 % 10;
 	}
 }
 void led_on(int pin)
