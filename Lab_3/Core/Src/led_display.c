@@ -7,7 +7,7 @@
 #include "led_display.h"
 
 
-void display7SEG(int num)
+void display7SEG(int num) // HIỆN THỊ LED 7 ĐOẠN
 {
    	if (num == 0)
     {
@@ -111,14 +111,14 @@ void display7SEG(int num)
    	}
 }
 int led_buffer[4] = {8, 8, 8, 8};
-void unEnableAll()
+void unEnableAll() // SET TẤT CẢ CÁC LED TẮT NHỜ ĐẶT CHÂN CONTROL LÊN 1
 {
 	HAL_GPIO_WritePin(SEG7_1_GPIO_Port, SEG7_1_Pin, 1);
 	HAL_GPIO_WritePin(SEG7_2_GPIO_Port, SEG7_2_Pin, 1);
 	HAL_GPIO_WritePin(SEG7_3_GPIO_Port, SEG7_3_Pin, 1);
 	HAL_GPIO_WritePin(SEG7_4_GPIO_Port, SEG7_4_Pin, 1);
 }
-void update7SEG(int index)
+void update7SEG(int index) // QUÉT LED
 {
 	switch (index)
 	{
@@ -148,7 +148,7 @@ void update7SEG(int index)
 }
 int valueSEG12;
 int valueSEG34;
-void updateClockBuffer()
+void updateClockBuffer() // CẬP NHẬT GIÁ TRỊ CHO BUFFER
 {
 	if (valueSEG12 <= 9)
 	{

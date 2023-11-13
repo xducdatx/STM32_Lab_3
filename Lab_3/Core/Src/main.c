@@ -98,37 +98,13 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   initialButton();
-  setTimer1(25);
-//  int index = 0;
-  setTimer2(100);
-  setTimer3(1);
+  setTimer1(25); // TIMER ĐỂ QUÉT LED
+  setTimer2(100); // TIMER ĐỂ CẬP NHẬT GIÁ TRỊ LED
+  setTimer3(1); // TIMER ĐỂ READ VALUE CỦA BUTTON
   while (1)
   {
     /* USER CODE END WHILE */
-//	  if (timer1_flag == 1)
-//	  {
-//		  getKeyInput();
-//		  setTimer1(1);
-//	  }
-//	  display7SEG(5);
-//	  if (isButton1Pressed() == 1)
-//	  {
-//		  display7SEG(2);
-//		  HAL_Delay(2000);
-//	  }
 	  fsm_processing();
-//	  if (timer1_flag == 1)
-//	  		{
-//	  			if (isButton1Pressed() == 1)
-//	  					{
-//	  						led_off(Red1);
-//	  						led_off(Green1);
-//	  					}
-//
-//	  			if (index > 3) index = 0;
-//	  			update7SEG(index++);
-//	  			setTimer1(25);
-//	  		}
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

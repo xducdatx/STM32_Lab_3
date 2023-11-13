@@ -10,11 +10,14 @@
 enum TypeOfMode{Initial, MODE1, MODE2, MODE3, MODE4};
 enum TypeOfMode Mode = Initial;
 
+// BIẾN STATUS DÙNG ĐỂ LƯU TRẠNG THÁI CỦA ĐÈN GIAO THÔNG STATUS = 0(ĐỎ), 1(VÀNG), 2(XANH)
 int status1 = 0;
 int status2 = 2;
+// BIẾN COUNT DÙNG ĐỂ ĐẾM LÙI THỜI GIAN CỦA ĐÈN
 int count1 = 0;
 int count2 = 0;
-int index = 0;
+int Index = 0;
+// TIMERED, TIMEGREEN, TIMEAMBER THỜI GIAN HIỂN THỊ CỦA ĐÈN GIAO THÔNG
 int timeRed = 5;
 int timeGreen = 3;
 int timeAmber = 2;
@@ -36,13 +39,19 @@ void fsm_processing()
 		if (isButton1Pressed() == 1)
 		{
 			Mode = MODE1;
+			led_off(Red1);
+			led_off(Red2);
+			led_off(Green1);
+			led_off(Green2);
+			led_off(Amber1);
+			led_off(Amber2);
 			break;
 		}
 		// HIỂN THỊ LED 7 ĐOẠN
 		if (timer1_flag == 1)
 		{
-			if (index > 3) index = 0;
-			update7SEG(index++);
+			if (Index > 3) Index = 0;
+			update7SEG(Index++);
 			setTimer1(25);
 		}
 		break;
@@ -128,8 +137,8 @@ void fsm_processing()
 		}
 		if (timer1_flag == 1) // HIỂN THỊ LED 7 ĐOẠN
 		{
-			if (index > 3) index = 0;
-			update7SEG(index++);
+			if (Index > 3) Index = 0;
+			update7SEG(Index++);
 			setTimer1(25);
 		}
 		break;
@@ -163,10 +172,14 @@ void fsm_processing()
 		updateClockBuffer();
 		if (timer1_flag == 1) // HIỂN THỊ LED 7 ĐOẠN
 		{
-			if (index > 3) index = 0;
-			update7SEG(index++);
+			if (Index > 3) Index = 0;
+			update7SEG(Index++);
 			setTimer1(25);
 			blinkingLedRed();
+		}
+		if (isButton3Pressed() == 1)
+		{
+			timeRed = timeRedTemp;
 		}
 		break;
 	case MODE3:
@@ -199,8 +212,8 @@ void fsm_processing()
 		updateClockBuffer();
 		if (timer1_flag == 1) // HIỂN THỊ LED 7 ĐOẠN
 		{
-			if (index > 3) index = 0;
-			update7SEG(index++);
+			if (Index > 3) Index = 0;
+			update7SEG(Index++);
 			setTimer1(25);
 			blinkingLedAmber();
 		}
@@ -214,7 +227,32 @@ void fsm_processing()
 		}
 		if (isButton1Pressed() == 1)
 		{
-			Mode = MODE1;
+			if (timeRed == timeGreen + timeAmber)
+			{
+				Mode = MODE1;
+				led_on(Red1);
+				led_on(Red2);
+				led_on(Green1);
+				led_on(Green2);
+				led_on(Amber1);
+				led_on(Amber2);
+			}
+			else
+			{
+				Mode = Initial;
+				timeRed = 5;
+				timeGreen = 3;
+				timeAmber = 2;
+				led_off(Red1);
+				led_off(Red2);
+				led_off(Green1);
+				led_off(Green2);
+				led_off(Amber1);
+				led_off(Amber2);
+				valueSEG12 = 88;
+				valueSEG34 = 88;
+				updateClockBuffer();
+			}
 			break;
 		}
 		if (isButton2Pressed() == 1)
@@ -234,8 +272,8 @@ void fsm_processing()
 		updateClockBuffer();
 		if (timer1_flag == 1) // HIỂN THỊ LED 7 ĐOẠN
 		{
-			if (index > 3) index = 0;
-			update7SEG(index++);
+			if (Index > 3) Index = 0;
+			update7SEG(Index++);
 			setTimer1(25);
 			blinkingLedGreen();
 		}
@@ -244,6 +282,5 @@ void fsm_processing()
 	default:
 		break;
 	}
-
 	//
 }

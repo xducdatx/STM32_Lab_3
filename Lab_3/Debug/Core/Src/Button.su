@@ -2,4 +2,4 @@ Button.c:19:6:initialButton	16	static
 Button.c:33:5:isButton1Pressed	4	static
 Button.c:42:5:isButton2Pressed	4	static
 Button.c:51:5:isButton3Pressed	4	static
-Button.c:73:6:getKeyInput	16	static
+Button.c:60:6:getKeyInput	16	static
