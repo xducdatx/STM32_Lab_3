@@ -7,7 +7,6 @@
 
 #include "Button.h"
 // Exercise 5 ********
-// Exercise 6 ********
 int KeyReg0[NUM_OF_BUTTON];
 int KeyReg1[NUM_OF_BUTTON];
 int KeyReg2[NUM_OF_BUTTON];
