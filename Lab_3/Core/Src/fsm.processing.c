@@ -41,7 +41,7 @@ void fsm_processing()
 		if (timer3_flag == 1)
 		{
 			getKeyInput();
-			setTimer3(1);
+			setTimer3(10);
 		}
 		if (isButton1Pressed() == 1)
 		{
@@ -54,7 +54,7 @@ void fsm_processing()
 		{
 			if (Index > 3) Index = 0;
 			update7SEG(Index++);
-			setTimer1(25);
+			setTimer1(250);
 		}
 		break;
 	case MODE1:
@@ -62,12 +62,14 @@ void fsm_processing()
 		if (timer3_flag == 1)
 		{
 			getKeyInput();
-			setTimer3(1);
+			setTimer3(10);
 		}
 		if (isButton1Pressed() == 1)
 		{
 			Mode = MODE2;
 			timeRedTemp = timeRed;
+			led_off(Red1);
+			led_off(Red2);
 			Index = 0;
 			break;
 		}
@@ -136,13 +138,13 @@ void fsm_processing()
 			valueSEG12 = count1;
 			valueSEG34 = count2;
 			updateClockBuffer();
-			setTimer2(100);
+			setTimer2(1000);
 		}
 		if (timer1_flag == 1) // HIỂN THỊ LED 7 ĐOẠN
 		{
 			if (Index > 3) Index = 0;
 			update7SEG(Index++);
-			setTimer1(25);
+			setTimer1(250);
 		}
 		break;
 	case MODE2:
@@ -150,7 +152,7 @@ void fsm_processing()
 		if (timer3_flag == 1)
 		{
 			getKeyInput();
-			setTimer3(1);
+			setTimer3(10);
 		}
 		if (isButton1Pressed() == 1)
 		{
@@ -161,8 +163,9 @@ void fsm_processing()
 		}
 		if (isButton2Pressed() == 1)
 		{
-			if(timeRedTemp > 0 && timeRedTemp < 99)
+			if(timeRedTemp >= 1 && timeRedTemp <= 99)
 			timeRedTemp++;
+			if (timeRedTemp >= 100) timeRedTemp = 1;
 		}
 		if (isButton3Pressed() == 1)
 		{
@@ -179,7 +182,7 @@ void fsm_processing()
 		{
 			if (Index > 3) Index = 0;
 			update7SEG(Index++);
-			setTimer1(25);
+			setTimer1(250);
 			blinkingLedRed();
 		}
 		break;
@@ -188,7 +191,7 @@ void fsm_processing()
 		if (timer3_flag == 1)
 		{
 			getKeyInput();
-			setTimer3(1);
+			setTimer3(10);
 		}
 		if (isButton1Pressed() == 1)
 		{
@@ -199,8 +202,9 @@ void fsm_processing()
 		}
 		if (isButton2Pressed() == 1)
 		{
-			if(timeAmberTemp > 0 && timeAmberTemp < 99)
+			if(timeAmberTemp >= 1 && timeAmberTemp <= 99)
 			timeAmberTemp++;
+			if (timeAmberTemp >= 100) timeAmberTemp = 1;
 		}
 		if (isButton3Pressed() == 1)
 		{
@@ -217,7 +221,7 @@ void fsm_processing()
 		{
 			if (Index > 3) Index = 0;
 			update7SEG(Index++);
-			setTimer1(25);
+			setTimer1(250);
 			blinkingLedAmber();
 		}
 		break;
@@ -226,7 +230,7 @@ void fsm_processing()
 		if (timer3_flag == 1)
 		{
 			getKeyInput();
-			setTimer3(1);
+			setTimer3(10);
 		}
 		if (isButton1Pressed() == 1)
 		{
@@ -259,8 +263,9 @@ void fsm_processing()
 		}
 		if (isButton2Pressed() == 1)
 		{
-			if(timeGreenTemp > 0 && timeGreenTemp < 99)
+			if(timeGreenTemp >= 1 && timeGreenTemp <= 99)
 			timeGreenTemp++;
+			if (timeGreenTemp >= 100) timeGreenTemp = 1;
 		}
 		if (isButton3Pressed() == 1)
 		{
@@ -277,7 +282,7 @@ void fsm_processing()
 		{
 			if (Index > 3) Index = 0;
 			update7SEG(Index++);
-			setTimer1(25);
+			setTimer1(250);
 			blinkingLedGreen();
 		}
 		break;

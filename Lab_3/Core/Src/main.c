@@ -98,9 +98,9 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   initialButton();
-  setTimer1(25); // TIMER ĐỂ QUÉT LED
-  setTimer2(100); // TIMER ĐỂ CẬP NHẬT GIÁ TRỊ LED
-  setTimer3(1); // TIMER ĐỂ READ VALUE CỦA BUTTON
+  setTimer1(250); // TIMER ĐỂ QUÉT LED
+  setTimer2(1000); // TIMER ĐỂ CẬP NHẬT GIÁ TRỊ LED
+  setTimer3(10); // TIMER ĐỂ READ VALUE CỦA BUTTON
   while (1)
   {
     /* USER CODE END WHILE */
