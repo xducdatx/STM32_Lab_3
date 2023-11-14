@@ -13,7 +13,7 @@
  */
 
 #include "fsm_processing.h"
-
+// Exercise 5 ********
 enum TypeOfMode{Initial, MODE1, MODE2, MODE3, MODE4};
 enum TypeOfMode Mode = Initial;
 
