@@ -5,6 +5,13 @@
  *      Author: datph
  */
 
+/*
+ * fsm.processing.c
+ *
+ *  Created on: Nov 12, 2023
+ *      Author: datph
+ */
+
 #include "fsm_processing.h"
 
 enum TypeOfMode{Initial, MODE1, MODE2, MODE3, MODE4};
@@ -39,12 +46,7 @@ void fsm_processing()
 		if (isButton1Pressed() == 1)
 		{
 			Mode = MODE1;
-			led_off(Red1);
-			led_off(Red2);
-			led_off(Green1);
-			led_off(Green2);
-			led_off(Amber1);
-			led_off(Amber2);
+			Index = 0;
 			break;
 		}
 		// HIỂN THỊ LED 7 ĐOẠN
@@ -66,6 +68,7 @@ void fsm_processing()
 		{
 			Mode = MODE2;
 			timeRedTemp = timeRed;
+			Index = 0;
 			break;
 		}
 		if (timer2_flag == 1)// HIỂN THỊ LED ĐƠN + CẬP NHẬT GIÁ TRỊ CHO LED 7 ĐOẠN
@@ -153,10 +156,12 @@ void fsm_processing()
 		{
 			Mode = MODE3;
 			timeAmberTemp = timeAmber;
+			Index = 0;
 			break;
 		}
 		if (isButton2Pressed() == 1)
 		{
+			if(timeRedTemp > 0 && timeRedTemp < 99)
 			timeRedTemp++;
 		}
 		if (isButton3Pressed() == 1)
@@ -177,10 +182,6 @@ void fsm_processing()
 			setTimer1(25);
 			blinkingLedRed();
 		}
-		if (isButton3Pressed() == 1)
-		{
-			timeRed = timeRedTemp;
-		}
 		break;
 	case MODE3:
 		// ĐỌC NÚT NHẤN VÀ XỬ LÍ KHI NHẬN ĐƯỢC TÍN HIỆU
@@ -193,10 +194,12 @@ void fsm_processing()
 		{
 			Mode = MODE4;
 			timeGreenTemp = timeGreen;
+			Index = 0;
 			break;
 		}
 		if (isButton2Pressed() == 1)
 		{
+			if(timeAmberTemp > 0 && timeAmberTemp < 99)
 			timeAmberTemp++;
 		}
 		if (isButton3Pressed() == 1)
@@ -230,12 +233,6 @@ void fsm_processing()
 			if (timeRed == timeGreen + timeAmber)
 			{
 				Mode = MODE1;
-				led_on(Red1);
-				led_on(Red2);
-				led_on(Green1);
-				led_on(Green2);
-				led_on(Amber1);
-				led_on(Amber2);
 			}
 			else
 			{
@@ -243,20 +240,26 @@ void fsm_processing()
 				timeRed = 5;
 				timeGreen = 3;
 				timeAmber = 2;
-				led_off(Red1);
-				led_off(Red2);
-				led_off(Green1);
-				led_off(Green2);
-				led_off(Amber1);
-				led_off(Amber2);
 				valueSEG12 = 88;
 				valueSEG34 = 88;
 				updateClockBuffer();
 			}
+			count1 = 0;
+			count2 = 0;
+			status1 = 0;
+			status2 = 2;
+			led_off(Red1);
+			led_off(Red2);
+			led_off(Green1);
+			led_off(Green2);
+			led_off(Amber1);
+			led_off(Amber2);
+			Index = 0;
 			break;
 		}
 		if (isButton2Pressed() == 1)
 		{
+			if(timeGreenTemp > 0 && timeGreenTemp < 99)
 			timeGreenTemp++;
 		}
 		if (isButton3Pressed() == 1)
