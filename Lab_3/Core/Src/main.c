@@ -97,6 +97,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  // Exercise 10 all task in final project
   initialButton();
   setTimer1(250); // TIMER ĐỂ QUÉT LED
   setTimer2(1000); // TIMER ĐỂ CẬP NHẬT GIÁ TRỊ LED
