@@ -16,6 +16,8 @@
 // Exercise 5 ********
 // Exercise 6 ********
 // Exercise 7 ********
+// Exercise 8 ********
+// Exercise 9 ********
 enum TypeOfMode{Initial, MODE1, MODE2, MODE3, MODE4};
 enum TypeOfMode Mode = Initial;
 
