@@ -53,12 +53,6 @@ void fsm_processing()
 			Index = 0;
 			break;
 		}
-		led_on(Red1);
-		led_on(Red2);
-		led_on(Green1);
-		led_on(Green2);
-		led_on(Amber1);
-		led_on(Amber2);
 		// HIỂN THỊ LED 7 ĐOẠN
 		if (timer1_flag == 1)
 		{
@@ -247,6 +241,12 @@ void fsm_processing()
 			if (timeRed == timeGreen + timeAmber)
 			{
 				Mode = MODE1;
+				led_off(Red1);
+				led_off(Red2);
+				led_off(Green1);
+				led_off(Green2);
+				led_off(Amber1);
+				led_off(Amber2);
 			}
 			else
 			{
@@ -257,17 +257,17 @@ void fsm_processing()
 				valueSEG12 = 88;
 				valueSEG34 = 88;
 				updateClockBuffer();
+				led_on(Red1);
+				led_on(Red2);
+				led_on(Green1);
+				led_on(Green2);
+				led_on(Amber1);
+				led_on(Amber2);
 			}
 			count1 = 0;
 			count2 = 0;
 			status1 = 0;
 			status2 = 2;
-			led_off(Red1);
-			led_off(Red2);
-			led_off(Green1);
-			led_off(Green2);
-			led_off(Amber1);
-			led_off(Amber2);
 			Index = 0;
 			break;
 		}
