@@ -53,6 +53,12 @@ void fsm_processing()
 			Index = 0;
 			break;
 		}
+		led_on(Red1);
+		led_on(Red2);
+		led_on(Green1);
+		led_on(Green2);
+		led_on(Amber1);
+		led_on(Amber2);
 		// HIỂN THỊ LED 7 ĐOẠN
 		if (timer1_flag == 1)
 		{

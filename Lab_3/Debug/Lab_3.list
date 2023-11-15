@@ -2109,6 +2109,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  // Exercise 10 all task in final project
   initialButton();
  8000ef2:	f7ff f92b 	bl	800014c <initialButton>
   setTimer1(250); // TIMER ĐỂ QUÉT LED
